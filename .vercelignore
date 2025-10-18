@@ -1,0 +1,9 @@
+node_modules/
+storage/logs/*
+!storage/logs/.gitkeep
+bootstrap/cache/*
+!bootstrap/cache/.gitkeep
+.env
+tests/
+vendor/
+python-rag/
