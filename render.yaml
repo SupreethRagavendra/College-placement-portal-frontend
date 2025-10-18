@@ -1,0 +1,51 @@
+services:
+  - type: web
+    name: college-placement-portal-frontend
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: APP_NAME
+        value: College Placement Portal
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        value: base64:BkMKrOJeUKQ39EuvLFgmKUU5KqQMLfFK/gjxEFrWemQ=
+      - key: APP_URL
+        value: https://college-placement-portal-frontend.onrender.com
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        value: db.wkqbukidxmzbgwauncrl.supabase.co
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        value: postgres
+      - key: DB_USERNAME
+        value: postgres.wkqbukidxmzbgwauncrl
+      - key: DB_PASSWORD
+        value: Supreeeth24#
+      - key: DB_SSLMODE
+        value: require
+      - key: CACHE_DRIVER
+        value: file
+      - key: SESSION_DRIVER
+        value: file
+      - key: SESSION_LIFETIME
+        value: 120
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: RAG_SERVICE_URL
+        value: https://rag-service.onrender.com
+      - key: RAG_ENABLED
+        value: true
+      - key: RAG_SERVICE_TIMEOUT
+        value: 30
+      - key: OPENROUTER_API_KEY
+        value: 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
+      - key: SANCTUM_STATEFUL_DOMAINS
+        value: college-placement-portal-frontend.onrender.com
+      - key: TRUSTED_PROXIES
+        value: "*"

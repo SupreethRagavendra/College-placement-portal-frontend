@@ -1,4 +1,4 @@
-# Laravel Dockerfile for Railway deployment
+# Laravel Dockerfile for Render deployment
 FROM php:8.2-fpm-alpine
 
 # Set working directory
