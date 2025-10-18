@@ -7,3 +7,9 @@ bootstrap/cache/*
 tests/
 vendor/
 python-rag/
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/app/*
+!storage/app/.gitkeep
+!storage/framework/.gitkeep
