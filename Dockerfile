@@ -1,4 +1,4 @@
-# Laravel Dockerfile for Render deployment
+# Laravel 11 + Nginx + PHP 8.2 Dockerfile for Render.com - Optimized for 512MB
 FROM php:8.2-fpm-alpine
 
 # Set working directory
@@ -38,11 +38,11 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy composer files
+# Copy composer files first for better caching
 COPY composer.json composer.lock ./
 
-# Install PHP dependencies
-RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --optimize-autoloader
+# Install PHP dependencies (skip scripts to avoid artisan issues)
+RUN composer install --no-dev --no-scripts --prefer-dist --optimize-autoloader
 
 # Copy package.json files
 COPY package*.json ./
@@ -50,10 +50,7 @@ COPY package*.json ./
 # Copy application files
 COPY . .
 
-# Generate autoloader
-RUN composer dump-autoload --optimize --no-dev
-
-# Install Node dependencies
+# Install Node dependencies and build assets
 RUN npm ci --prefer-offline --no-audit --production \
     && npm run build \
     && npm cache clean --force \

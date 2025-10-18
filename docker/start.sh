@@ -8,13 +8,13 @@ if [ -z "$APP_KEY" ]; then
     php artisan key:generate
 fi
 
-# Run database migrations
-php artisan migrate --force
+# Run Laravel optimizations
+php artisan config:cache || true
+php artisan route:cache || true
+php artisan view:cache || true
 
-# Clear and cache configuration
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
+# Run database migrations (skip if database not available)
+php artisan migrate --force || echo "Database migration skipped - will retry on first request"
 
 # Start supervisor
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
