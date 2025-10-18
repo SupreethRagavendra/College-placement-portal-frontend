@@ -101,7 +101,6 @@ tmp/
 composer.phar
 
 # NPM
-package-lock.json
 yarn.lock
 
 # Docker
